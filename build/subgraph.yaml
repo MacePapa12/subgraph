@@ -1,6 +1,6 @@
 specVersion: 0.0.2
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum/contract
     name: debase
@@ -19,7 +19,7 @@ dataSources:
         - Transfer
       abis:
         - name: debase
-          file: ./abis/debase.json
+          file: debase/abis/debase.json
       eventHandlers:
         - event: Approval(indexed address,indexed address,uint256)
           handler: handleApproval
@@ -27,4 +27,4 @@ dataSources:
           handler: handleLogRebase
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer
-      file: ./src/mapping.ts
+      file: debase/debase.wasm
