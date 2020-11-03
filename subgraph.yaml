@@ -1,0 +1,29 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: debase
+    network: mainnet
+    source:
+      address: "0xe20303b4f80Ef868F653d1feD3f797b5116C3a2E"
+      abi: debase
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.2
+      language: wasm/assemblyscript
+      entities:
+        - Approval
+        - LogRebase
+        - Transfer
+      abis:
+        - name: debase
+          file: ./abis/debase.json
+      eventHandlers:
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
+        - event: LogRebase(indexed uint256,uint256)
+          handler: handleLogRebase
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+      file: ./src/mapping.ts
