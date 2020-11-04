@@ -51,6 +51,113 @@ export class User extends Entity {
     this.set("address", Value.fromString(value));
   }
 
+  get balance(): BigInt {
+    let value = this.get("balance");
+    return value.toBigInt();
+  }
+
+  set balance(value: BigInt) {
+    this.set("balance", Value.fromBigInt(value));
+  }
+
+  get transactionCount(): i32 {
+    let value = this.get("transactionCount");
+    return value.toI32();
+  }
+
+  set transactionCount(value: i32) {
+    this.set("transactionCount", Value.fromI32(value));
+  }
+
+  get blockNumber(): BigInt {
+    let value = this.get("blockNumber");
+    return value.toBigInt();
+  }
+
+  set blockNumber(value: BigInt) {
+    this.set("blockNumber", Value.fromBigInt(value));
+  }
+
+  get block(): string {
+    let value = this.get("block");
+    return value.toString();
+  }
+
+  set block(value: string) {
+    this.set("block", Value.fromString(value));
+  }
+}
+
+export class UserCounter extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save UserCounter entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save UserCounter entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("UserCounter", id.toString(), this);
+  }
+
+  static load(id: string): UserCounter | null {
+    return store.get("UserCounter", id) as UserCounter | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get count(): i32 {
+    let value = this.get("count");
+    return value.toI32();
+  }
+
+  set count(value: i32) {
+    this.set("count", Value.fromI32(value));
+  }
+}
+
+export class BalancePerBlock extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save BalancePerBlock entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save BalancePerBlock entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("BalancePerBlock", id.toString(), this);
+  }
+
+  static load(id: string): BalancePerBlock | null {
+    return store.get("BalancePerBlock", id) as BalancePerBlock | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
   get block(): BigInt {
     let value = this.get("block");
     return value.toBigInt();
@@ -60,21 +167,61 @@ export class User extends Entity {
     this.set("block", Value.fromBigInt(value));
   }
 
-  get timeStamp(): BigInt {
-    let value = this.get("timeStamp");
+  get users(): Array<string> {
+    let value = this.get("users");
+    return value.toStringArray();
+  }
+
+  set users(value: Array<string>) {
+    this.set("users", Value.fromStringArray(value));
+  }
+}
+
+export class TransferCounter extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save TransferCounter entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save TransferCounter entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("TransferCounter", id.toString(), this);
+  }
+
+  static load(id: string): TransferCounter | null {
+    return store.get("TransferCounter", id) as TransferCounter | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get count(): i32 {
+    let value = this.get("count");
+    return value.toI32();
+  }
+
+  set count(value: i32) {
+    this.set("count", Value.fromI32(value));
+  }
+
+  get totalTransferred(): BigInt {
+    let value = this.get("totalTransferred");
     return value.toBigInt();
   }
 
-  set timeStamp(value: BigInt) {
-    this.set("timeStamp", Value.fromBigInt(value));
-  }
-
-  get balance(): BigInt {
-    let value = this.get("balance");
-    return value.toBigInt();
-  }
-
-  set balance(value: BigInt) {
-    this.set("balance", Value.fromBigInt(value));
+  set totalTransferred(value: BigInt) {
+    this.set("totalTransferred", Value.fromBigInt(value));
   }
 }

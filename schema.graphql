@@ -1,7 +1,24 @@
 type User @entity {
-  id: ID!
-  address: String!
-  block: BigInt!
-  timeStamp: BigInt!
-  balance: BigInt! # address
+	blockNumber: ID!
+	address: String!
+	balance: BigInt!
+	transactionCount: Int!
+	block: BalancePerBlock!
+}
+
+type UserCounter @entity {
+	id: ID!
+	count: Int!
+}
+
+type BalancePerBlock @entity {
+	id: ID!
+	block: BigInt!
+	users: [User!]! @derivedFrom(field: "block")
+}
+
+type TransferCounter @entity {
+	id: ID!
+	count: Int!
+	totalTransferred: BigInt!
 }

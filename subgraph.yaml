@@ -8,23 +8,20 @@ dataSources:
     source:
       address: "0xe20303b4f80Ef868F653d1feD3f797b5116C3a2E"
       abi: debase
-      startBlock: 11120000
+      startBlock: 11110000
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
       language: wasm/assemblyscript
       entities:
-        - Approval
-        - LogRebase
-        - Transfer
+        - User
+        - UserCounter
+        - TransferCounter
+        - TotalSupply
       abis:
         - name: debase
           file: ./abis/debase.json
       eventHandlers:
-        - event: Approval(indexed address,indexed address,uint256)
-          handler: handleApproval
-        - event: LogRebase(indexed uint256,uint256)
-          handler: handleLogRebase
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer
       file: ./src/mapping.ts

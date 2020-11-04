@@ -1,7 +1,25 @@
 type User @entity {
-  id: ID!
-  address: String!
-  block: BigInt!
-  timeStamp: BigInt!
-  balance: BigInt! # address
+	id: ID!
+	address: String!
+	balance: BigInt!
+	transactionCount: Int!
+	block: BigInt!
+}
+
+type UserCounter @entity {
+	id: ID!
+	count: Int!
+}
+
+type TransferCounter @entity {
+	id: ID!
+	count: Int!
+	totalTransferred: BigInt!
+}
+
+type TotalSupply @entity {
+	id: ID!
+	supply: BigInt!
+	minted: BigInt!
+	burned: BigInt!
 }
