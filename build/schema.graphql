@@ -3,7 +3,6 @@ type User @entity {
 	address: String!
 	balance: BigInt!
 	transactionCount: Int!
-	block: BigInt!
 }
 
 type UserCounter @entity {
@@ -15,11 +14,4 @@ type TransferCounter @entity {
 	id: ID!
 	count: Int!
 	totalTransferred: BigInt!
-}
-
-type TotalSupply @entity {
-	id: ID!
-	supply: BigInt!
-	minted: BigInt!
-	burned: BigInt!
 }

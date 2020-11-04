@@ -68,24 +68,6 @@ export class User extends Entity {
   set transactionCount(value: i32) {
     this.set("transactionCount", Value.fromI32(value));
   }
-
-  get blockNumber(): BigInt {
-    let value = this.get("blockNumber");
-    return value.toBigInt();
-  }
-
-  set blockNumber(value: BigInt) {
-    this.set("blockNumber", Value.fromBigInt(value));
-  }
-
-  get block(): string {
-    let value = this.get("block");
-    return value.toString();
-  }
-
-  set block(value: string) {
-    this.set("block", Value.fromString(value));
-  }
 }
 
 export class UserCounter extends Entity {
@@ -125,55 +107,6 @@ export class UserCounter extends Entity {
 
   set count(value: i32) {
     this.set("count", Value.fromI32(value));
-  }
-}
-
-export class BalancePerBlock extends Entity {
-  constructor(id: string) {
-    super();
-    this.set("id", Value.fromString(id));
-  }
-
-  save(): void {
-    let id = this.get("id");
-    assert(id !== null, "Cannot save BalancePerBlock entity without an ID");
-    assert(
-      id.kind == ValueKind.STRING,
-      "Cannot save BalancePerBlock entity with non-string ID. " +
-        'Considering using .toHex() to convert the "id" to a string.'
-    );
-    store.set("BalancePerBlock", id.toString(), this);
-  }
-
-  static load(id: string): BalancePerBlock | null {
-    return store.get("BalancePerBlock", id) as BalancePerBlock | null;
-  }
-
-  get id(): string {
-    let value = this.get("id");
-    return value.toString();
-  }
-
-  set id(value: string) {
-    this.set("id", Value.fromString(value));
-  }
-
-  get block(): BigInt {
-    let value = this.get("block");
-    return value.toBigInt();
-  }
-
-  set block(value: BigInt) {
-    this.set("block", Value.fromBigInt(value));
-  }
-
-  get users(): Array<string> {
-    let value = this.get("users");
-    return value.toStringArray();
-  }
-
-  set users(value: Array<string>) {
-    this.set("users", Value.fromStringArray(value));
   }
 }
 

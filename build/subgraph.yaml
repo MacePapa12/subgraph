@@ -17,13 +17,10 @@ dataSources:
         - User
         - UserCounter
         - TransferCounter
-        - TotalSupply
       abis:
         - name: debase
           file: debase/abis/debase.json
       eventHandlers:
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer
-      blockHandlers:
-        - handler: handleBlock
       file: debase/debase.wasm

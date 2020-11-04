@@ -17,7 +17,6 @@ dataSources:
         - User
         - UserCounter
         - TransferCounter
-        - TotalSupply
       abis:
         - name: debase
           file: ./abis/debase.json
